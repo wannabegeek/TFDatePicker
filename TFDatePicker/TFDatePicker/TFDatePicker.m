@@ -89,7 +89,14 @@ NSInteger buttonSize = 16;
 		_datePickerViewController.datePicker.delegate = self;
 		
 		[_datePickerViewController showDatePickerRelativeToRect:[sender bounds] inView:sender completionHander:^(NSDate *selectedDate) {
-			self.dateValue = selectedDate;
+			// if we have bindings, update the bound "value", otherwise just update the value in the datePicker
+			NSDictionary *bindingInfo = [self infoForBinding:@"value"];
+			if (bindingInfo) {
+				NSString *keyPath = [bindingInfo valueForKey:NSObservedKeyPathKey];
+				[[bindingInfo objectForKey:NSObservedObjectKey] setValue:selectedDate forKeyPath:keyPath];
+			} else {
+				self.dateValue = selectedDate;
+			}
 		}];
 	}
 }

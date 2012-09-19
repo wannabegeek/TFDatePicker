@@ -12,6 +12,8 @@
 
 @property (assign) IBOutlet NSWindow *window;
 
+@property (nonatomic, strong) NSDate *date1;
+@property (strong) NSDate *date2;
 @property (nonatomic, assign) BOOL allDay;
 
 @end
