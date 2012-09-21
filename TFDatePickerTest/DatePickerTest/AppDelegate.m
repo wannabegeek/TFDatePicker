@@ -55,7 +55,7 @@ const NSTimeInterval timeStep = 5.0f * 60.0f; // 5 mins
 	if(timeStep != 0) {
 		double remainder = fmod(timeInterval, timeStep);
 		if (remainder != 0.0f) {
-			timeInterval = timeInterval + timeStep - remainder;
+			timeInterval = timeInterval - remainder;
 		}
 	}
 
